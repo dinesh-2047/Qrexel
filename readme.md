@@ -57,7 +57,7 @@
 - **Frontend**: React.js, Vite, TypeScript, Tailwind CSS
 - **State Management**: React Context API / Zustand
 - **QR Code Generation**: `qrcode` package
-- **Linting & Formatting**: ESLint, Prettier
+
 
 ---
 
