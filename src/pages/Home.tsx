@@ -52,13 +52,13 @@ export default function Home() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto dark:text-white">
       <div className="grid md:grid-cols-2 gap-8">
         <div className="space-y-6">
           <div className="space-y-4">
             <h2 className="text-xl font-semibold">QR Code Content</h2>
             <select
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded dark:text-black"
               value={currentQR.type}
               onChange={(e) => setCurrentQR({ type: e.target.value as any })}
             >
@@ -69,7 +69,7 @@ export default function Home() {
             </select>
 
             <textarea
-              className="w-full p-2 border rounded h-32"
+              className="w-full p-2 border rounded h-32 dark:text-black"
               placeholder="Enter your content here..."
               value={currentQR.data}
               onChange={(e) => setCurrentQR({ data: e.target.value })}
@@ -80,7 +80,7 @@ export default function Home() {
             <h2 className="text-xl font-semibold">Customization</h2>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-gray-700 dark:text-white">
                   Dot Color
                 </label>
                 <input
@@ -91,7 +91,7 @@ export default function Home() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-gray-700 dark:text-white">
                   Background Color
                 </label>
                 <input
