@@ -1,10 +1,11 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import Scanner from './pages/Scanner';
-import DarkMode from './components/DarkMode';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Scanner from "./pages/Scanner";
+import DarkMode from "./components/DarkMode";
+import Report from "./pages/Report";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/scanner" element={<Scanner />} />
+            <Route path="/report" element={<Report />} />
           </Routes>
         </main>
         <Toaster position="bottom-right" />
