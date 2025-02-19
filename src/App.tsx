@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Scanner from "./pages/Scanner";
 import Report from "./pages/Report";
+import QrCodes  from "./components/ui/QrCodes ";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/scanner" element={<Scanner />} />
             <Route path="/report" element={<Report />} />
+            <Route path="/qrcode" element={<QrCodes />} />
           </Routes>
         </main>
         <Toaster position="bottom-right" />
