@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faDownload, faShareAlt, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import webLogo from "../utils/logo-qrexel.png"
+import { Link } from 'react-router-dom';
 
 export default function Home() {
   const { currentQR, setCurrentQR } = useStore();
@@ -78,7 +79,7 @@ export default function Home() {
         <nav className="flex space-x-4 text-sm">
           <a className="text-white hover:text-gray-300" href="#">Generate</a>
           <a className="text-white hover:text-gray-300" href="#">Scan</a>
-          <a className="text-white hover:text-gray-300" href="#">About QR Codes</a>
+          <Link to="/qrcode" className="text-white hover:text-gray-300" >About QR Codes</Link>
           <a className="text-white hover:text-gray-300" href="#">Community</a>
         </nav>
         <div className="flex items-center space-x-3">
