@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { supabase } from '../supabase/client';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../firebase/config';
 import { useStore } from '../store/useStore';
 import toast from 'react-hot-toast';
 
@@ -17,23 +18,24 @@ export default function Auth() {
     setLoading(true);
 
     try {
-      const { data, error } = isSignUp
-        ? await supabase.auth.signUp({ email, password })
-        : await supabase.auth.signInWithPassword({ email, password });
+      const authFunction = isSignUp
+        ? createUserWithEmailAndPassword
+        : signInWithEmailAndPassword;
 
-      if (error) throw error;
+      const { user } = await authFunction(auth, email, password);
 
-      if (data.user) {
+      if (user) {
         setUser({
-          id: data.user.id,
-          email: data.user.email!,
-          created_at: data.user.created_at,
+          id: user.uid,
+          email: user.email!,
+          created_at: user.metadata.creationTime!
         });
         toast.success(isSignUp ? 'Account created successfully' : 'Signed in successfully');
         navigate('/dashboard');
       }
-    } catch (error: any) {
-      toast.error(error.message);
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'An error occurred';
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }

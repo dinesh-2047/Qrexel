@@ -86,8 +86,9 @@ export default function Home() {
           <button className="text-white" onClick={toggleDarkMode}>
             <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
           </button>
+
           <button className="text-white bg-[#00d084] px-4 py-1 rounded" onClick={toggleSignIn}>
-            {isSignedIn ? 'Sign Out' : 'Sign In / Sign Up'}
+            <Link to="/auth">{isSignedIn ? 'Sign Out' : 'Sign In / Sign Up'}</Link>
           </button>
         </div>
       </header>
