@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BarChart, Clock, Link as LinkIcon } from 'lucide-react';
 import { useStore } from '../store/useStore';
-import { supabase } from '../supabase/client';
 import { SavedQRCode } from '../types';
 import toast from 'react-hot-toast';
 
