@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Scanner from "./pages/Scanner";
 import Report from "./pages/Report";
 import QrCodes  from "./components/ui/QrCodes ";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/scanner" element={<Scanner />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route path="/report" element={<Report />} />
             <Route path="/qrcode" element={<QrCodes />} />
           </Routes>
