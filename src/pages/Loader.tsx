@@ -4,7 +4,7 @@ const Loader = () => {
   return (
     <div>
       <div className="w-full h-screen flex justify-center items-center">
-        <img className="h-16" src="../src/infinite-spinner.svg" alt="Loading" />
+        <img className="h-16" src="./infinite-spinner.svg" alt="Loading" />
       </div>
     </div>
   );
