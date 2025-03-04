@@ -23,10 +23,6 @@ function App() {
     }, 3000);
   }, []);
 
-  React.useEffect(() => {
-    console.log('APP::: Navbar re-rendered due to darkMode change:', darkMode);
-  }, [darkMode]);
-
   return (
     <React.Fragment>
       {showimg ? (
