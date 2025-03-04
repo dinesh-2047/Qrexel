@@ -1,43 +1,47 @@
-import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
-import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import Scanner from "./pages/Scanner";
-import Report from "./pages/Report";
-import QrCodes  from "./components/ui/QrCodes ";
-import Loader from "./pages/Loader";
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import Scanner from './pages/Scanner';
+import Report from './pages/Report';
+import QrCodes from './components/ui/QrCodes ';
+import Loader from './pages/Loader';
 
 function App() {
-  const [showimg ,setShowimg] = useState(true)
-      useEffect(()=>{
-          setTimeout(() => {
-              setShowimg(false);
-          }, 3000);
-      },[])
+  const [darkMode, setDarkMode] = React.useState(false);
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
+  const [showimg, setShowimg] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setShowimg(false);
+    }, 3000);
+  }, []);
+
+  React.useEffect(() => {
+    console.log('APP::: Navbar re-rendered due to darkMode change:', darkMode);
+  }, [darkMode]);
 
   return (
-    <div>
-      {
-        showimg?
-        <Loader/>:
-    <BrowserRouter>
-      <div className="min-h-screen bg-gray-100 dark:bg-gray-900 relative transition-all duration-300">
-        <Navbar />
-        <main className="container mx-auto px-4 py-8">
+    <React.Fragment>
+      {showimg ? (
+        <Loader />
+      ) : (
+        <BrowserRouter>
+          <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/scanner" element={<Scanner />} />
-            <Route path="/report" element={<Report />} />
-            <Route path="/qrcode" element={<QrCodes />} />
+            <Route path='/' element={<Home darkMode={darkMode} />} />
+            <Route path='/scanner' element={<Scanner />} />
+            <Route path='/report' element={<Report />} />
+            <Route path='/qrcode' element={<QrCodes />} />
           </Routes>
-        </main>
-        <Toaster position="bottom-right" />
-      </div>
-    </BrowserRouter>
-        }
-    </div>
-    
+          <Toaster position='bottom-right' />
+        </BrowserRouter>
+      )}
+    </React.Fragment>
   );
 }
 
