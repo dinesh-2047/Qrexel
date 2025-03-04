@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import QRCodeStyling from 'qr-code-styling';
 import { useStore } from '../store/useStore';
 import toast from 'react-hot-toast';
@@ -18,7 +18,7 @@ export default function Home({ darkMode }: { darkMode: boolean }) {
     qrCode.current = new QRCodeStyling({
       width: currentQR.width,
       height: currentQR.height,
-      data: currentQR.data || 'https://stackblitz.com',
+      data: currentQR.data || 'Welcome to Qrexel',
       dotsOptions: {
         color: currentQR.dotColor,
         type: 'rounded',
@@ -38,7 +38,7 @@ export default function Home({ darkMode }: { darkMode: boolean }) {
   useEffect(() => {
     if (qrCode.current) {
       qrCode.current.update({
-        data: currentQR.data,
+        data: currentQR.data || 'Welcome to Qrexel',
         dotsOptions: { color: currentQR.dotColor },
         backgroundOptions: { color: currentQR.backgroundColor },
       });
@@ -61,9 +61,9 @@ export default function Home({ darkMode }: { darkMode: boolean }) {
       <div
         className={`min-h-screen flex flex-col ${
           darkMode ? 'bg-[#1a2b3a]' : 'bg-white'
-        } overflow-auto  pt-10`}
+        } overflow-auto pt-10 px-4`}
       >
-        <main className='flex-grow overflow-y-auto max-w-4xl mx-auto p-4'>
+        <main className='flex-grow max-w-4xl mx-auto p-4'>
           <h1
             className={`text-2xl font-semibold text-center mb-4 ${
               darkMode ? 'text-[#0099cc]' : 'text-[#006400]'
@@ -81,52 +81,29 @@ export default function Home({ darkMode }: { darkMode: boolean }) {
           </p>
 
           <div
-            className={`flex flex-col md:flex-row p-4 rounded-lg shadow-lg ${
+            className={`flex flex-col md:flex-row p-4 rounded-lg shadow-lg gap-4 ${
               darkMode ? 'bg-[#1a2b3a]' : 'bg-[#f0f0f0]'
             }`}
           >
-            <div className='flex-1 pr-3'>
-              <div className='flex space-x-3 mb-4'>
-                <button
-                  type='button'
-                  onClick={() => setCurrentQR({ type: 'url' })}
-                  className={`flex-1 py-2 border border-gray-300 rounded ${
-                    darkMode ? 'bg-[#444f58]' : 'bg-white'
-                  } hover:bg-[#00d084] hover:text-white`}
-                >
-                  URL
-                </button>
-                <button
-                  type='button'
-                  onClick={() => setCurrentQR({ type: 'vcard' })}
-                  className={`flex-1 py-2 border border-gray-300 rounded ${
-                    darkMode ? 'bg-[#444f58]' : 'bg-[#f0f0f0]'
-                  } hover:bg-[#00d084] hover:text-white`}
-                >
-                  Contact
-                </button>
-                <button
-                  type='button'
-                  onClick={() => setCurrentQR({ type: 'text' })}
-                  className={`flex-1 py-2 border border-gray-300 rounded ${
-                    darkMode ? 'bg-[#444f58]' : 'bg-[#f0f0f0]'
-                  } hover:bg-[#00d084] hover:text-white`}
-                >
-                  Plain Text
-                </button>
-                <button
-                  type='button'
-                  onClick={() => setCurrentQR({ type: 'wifi' })}
-                  className={`flex-1 py-2 border border-gray-300 rounded ${
-                    darkMode ? 'bg-[#444f58]' : 'bg-[#f0f0f0]'
-                  } hover:bg-[#00d084] hover:text-white`}
-                >
-                  Wifi
-                </button>
+            <div className='flex-1'>
+              <div className='grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4'>
+                {['URL', 'Contact', 'Plain Text', 'Wifi'].map((type) => (
+                  <button
+                    key={type}
+                    type='button'
+                    onClick={() => setCurrentQR({ type: type.toLowerCase() })}
+                    className={`py-2 border border-gray-300 rounded text-center ${
+                      darkMode ? 'bg-[#444f58]' : 'bg-white'
+                    } hover:bg-[#00d084] hover:text-white`}
+                  >
+                    {type}
+                  </button>
+                ))}
               </div>
+
               <div
-                className={`bg-white p-4 rounded-lg border border-gray-300 ${
-                  darkMode ? 'bg-[#2e3b44]' : ''
+                className={`p-4 rounded-lg border border-gray-300 ${
+                  darkMode ? 'bg-[#2e3b44]' : 'bg-white'
                 }`}
               >
                 <label
@@ -142,8 +119,13 @@ export default function Home({ darkMode }: { darkMode: boolean }) {
                   }`}
                   placeholder='Enter URL'
                   type='text'
-                  value={currentQR.data}
-                  onChange={(e) => setCurrentQR({ data: e.target.value })}
+                  onChange={(e) =>
+                    setCurrentQR(
+                      e.target.value === ''
+                        ? { data: 'Welcome to Qrexel' }
+                        : { data: e.target.value }
+                    )
+                  }
                 />
                 <p
                   className={`text-sm mb-4 ${
@@ -170,35 +152,25 @@ export default function Home({ darkMode }: { darkMode: boolean }) {
               </div>
             </div>
 
-            <div className='flex-1 flex flex-col items-center justify-center py-4'>
+            <div className='flex-1 flex flex-col items-center py-4'>
               <p
                 className={`text-center mb-3 ${
                   darkMode ? 'text-gray-300' : 'text-gray-600'
                 }`}
               >
-                To enable tracking,
+                To enable tracking,{' '}
                 <a className='text-[#00d084]' href='#'>
                   create a Dynamic QR Code
                 </a>
               </p>
-
-              {/* QR Code Display */}
-              <div
-                className='w-40 h-40 border border-gray-300 rounded mb-3'
-                style={{
-                  backgroundColor: currentQR.backgroundColor,
-                  color: currentQR.dotColor,
-                }}
-              >
+              <div className='max-w-full max-h-full border border-gray-300 rounded flex items-center justify-center overflow-hidden'>
                 <div
                   ref={qrRef}
-                  className='flex justify-center items-center h-full scale-[0.5]'
-                >{`QR Code`}</div>
+                  className='max-w-full max-h-full flex justify-center items-center p-5'
+                ></div>
               </div>
-
-              {/* Color Pickers */}
-              <div className='flex flex-col space-y-3 items-center'>
-                <div className='w-40'>
+              <div className='flex flex-col space-y-3 items-center w-full mt-4'>
+                <div className='w-full max-w-xs'>
                   <label
                     className={`text-sm ${
                       darkMode ? 'text-gray-300' : 'text-gray-700'
@@ -213,7 +185,7 @@ export default function Home({ darkMode }: { darkMode: boolean }) {
                     className='mt-2 w-full'
                   />
                 </div>
-                <div className='w-40'>
+                <div className='w-full max-w-xs'>
                   <label
                     className={`text-sm ${
                       darkMode ? 'text-gray-300' : 'text-gray-700'
@@ -231,7 +203,6 @@ export default function Home({ darkMode }: { darkMode: boolean }) {
                   />
                 </div>
               </div>
-
               <div className='flex space-x-3 mt-4'>
                 <button
                   type='button'
@@ -256,11 +227,6 @@ export default function Home({ darkMode }: { darkMode: boolean }) {
             </div>
           </div>
         </main>
-
-        {/* Footer Section */}
-        <footer className='bg-[#2d3a47] text-white text-center py-2 mt-4'>
-          <p>&copy; 2025 Developed by dinesh-2047</p>
-        </footer>
       </div>
     </div>
   );
