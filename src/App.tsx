@@ -8,6 +8,7 @@ import Report from './pages/Report';
 import QrCodes from './components/ui/QrCodes ';
 import Loader from './pages/Loader';
 import Footer from './components/Footer';
+import NotFound from './pages/NotFound';
 
 function App() {
   const [darkMode, setDarkMode] = React.useState(false);
@@ -38,6 +39,7 @@ function App() {
             <Route path='/scanner' element={<Scanner />} />
             <Route path='/report' element={<Report />} />
             <Route path='/qrcode' element={<QrCodes />} />
+            <Route path='*' element={<NotFound darkMode={darkMode} />} />
           </Routes>
           <Toaster position='bottom-right' />
           <Footer />
