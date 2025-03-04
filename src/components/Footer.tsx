@@ -27,9 +27,9 @@ const Footer: React.FC = () => {
           <h3 className='text-xl font-semibold'>Quick Links</h3>
           <ul className='mt-2 space-y-2'>
             <li>
-              <a href='#' className='text-gray-400 hover:text-white'>
+              <Link to='/' className='text-gray-400 hover:text-white'>
                 Home
-              </a>
+              </Link>
             </li>
             <li>
               <Link to='/qrcode' className='text-gray-400 hover:text-white'>
