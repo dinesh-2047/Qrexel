@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Navbar from "./components/Navbar";
@@ -7,9 +7,22 @@ import Scanner from "./pages/Scanner";
 import Report from "./pages/Report";
 import QrCodes  from "./components/ui/QrCodes ";
 import SignUp from "./pages/SignUp";
+import Loader from "./pages/Loader";
+
 
 function App() {
+  const [showimg ,setShowimg] = useState(true)
+      useEffect(()=>{
+          setTimeout(() => {
+              setShowimg(false);
+          }, 3000);
+      },[])
+
   return (
+    <div>
+      {
+        showimg?
+        <Loader/>:
     <BrowserRouter>
       <div className="min-h-screen bg-gray-100 dark:bg-gray-900 relative transition-all duration-300">
         <Navbar />
@@ -25,6 +38,9 @@ function App() {
         <Toaster position="bottom-right" />
       </div>
     </BrowserRouter>
+        }
+    </div>
+    
   );
 }
 

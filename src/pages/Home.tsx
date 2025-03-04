@@ -152,7 +152,7 @@ export default function Home() {
               className="w-40 h-40 border border-gray-300 rounded mb-3"
               style={{ backgroundColor: currentQR.backgroundColor, color: currentQR.dotColor }}
             >
-              <div ref={qrRef} className="flex justify-center items-center h-full">{`QR Code`}</div>
+              <div ref={qrRef} className="flex justify-center items-center h-full scale-[0.5]">{`QR Code`}</div>
             </div>
 
             {/* Color Pickers */}
