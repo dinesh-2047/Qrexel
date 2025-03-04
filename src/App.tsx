@@ -7,6 +7,7 @@ import Scanner from './pages/Scanner';
 import Report from './pages/Report';
 import QrCodes from './components/ui/QrCodes ';
 import Loader from './pages/Loader';
+import Footer from './components/Footer';
 
 function App() {
   const [darkMode, setDarkMode] = React.useState(false);
@@ -39,6 +40,7 @@ function App() {
             <Route path='/qrcode' element={<QrCodes />} />
           </Routes>
           <Toaster position='bottom-right' />
+          <Footer />
         </BrowserRouter>
       )}
     </React.Fragment>
