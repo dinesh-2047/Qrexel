@@ -1,0 +1,111 @@
+.signup-main {
+    background: linear-gradient(to right, #37693E, #909F13);
+    padding: 2rem;
+}
+
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 2rem auto;
+}
+
+.signup-content1 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    padding: 2rem;
+    height: 682px;
+    border-radius: 2rem 2rem 0 0;
+
+}
+
+.signup-content1 h1 {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+}
+
+.signup-content1 p {
+    text-align: center;
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.signup-content1 a {
+    text-decoration: none;
+    border: 2px solid white;
+    padding: 0.5rem 2.5rem;
+    transition: 0.3s;
+}
+
+.signup-content2 {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    position: sticky;
+    width: 100%;
+    background: #fff;
+    border-radius: 0 0 2rem 2rem;
+    height: 680px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.content-data {
+    margin-top: 4rem;
+}
+
+.content-data h2 {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+}
+
+.content-data p.or {
+    font-size: 2.1rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+input {
+    background-color: #CCCCCC;
+    padding: 0.5rem !important;
+    margin-bottom: 2rem;
+}
+
+input::placeholder {
+    font-size: 1rem;
+    color: #434242;
+}
+
+@media (min-width: 1200px) {
+    .signup-container {
+        flex-direction: row;
+        width: 60%;
+    }
+
+    .signup-content1 {
+        position: absolute;
+        width: 30%;
+        left: 20%;
+        z-index: 1;
+        border-radius: 2rem 15rem 15rem 2rem;
+    }
+
+    .signup-content2 {
+        width: 70%;
+        left: 10%;
+        position: relative;
+        border-radius: 0 2rem 2rem 0;
+    }
+
+    .content-data {
+        margin-left: 11rem;
+    }
+}

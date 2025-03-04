@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faDownload, faShareAlt, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import webLogo from "../utils/logo-qrexel.png"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Home() {
   const { currentQR, setCurrentQR } = useStore();
@@ -18,8 +18,11 @@ export default function Home() {
     setDarkMode(!darkMode); // Toggle dark mode state
   };
 
+  const navigate = useNavigate();
+
   const toggleSignIn = () => {
     setIsSignedIn(!isSignedIn); // Toggle sign-in state
+    navigate('/signup');
   };
 
 
