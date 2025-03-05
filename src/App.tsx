@@ -9,6 +9,7 @@ import QrCodes from './components/ui/QrCodes ';
 import Loader from './pages/Loader';
 import Footer from './components/Footer';
 import NotFound from './pages/NotFound';
+import SignUp from './pages/SignUp';
 
 function App() {
   const [darkMode, setDarkMode] = React.useState(false);
@@ -20,7 +21,7 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setShowimg(false);
-    }, 3000);
+    }, 2000);
   }, []);
 
   return (
@@ -36,6 +37,7 @@ function App() {
             <Route path='/report' element={<Report />} />
             <Route path='/qrcode' element={<QrCodes />} />
             <Route path='*' element={<NotFound darkMode={darkMode} />} />
+            <Route path='/signup' element={<SignUp/>} />
           </Routes>
           <Toaster position='bottom-right' />
           <Footer />
