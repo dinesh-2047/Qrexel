@@ -37,7 +37,7 @@ function App() {
             <Route path='/report' element={<Report />} />
             <Route path='/qrcode' element={<QrCodes />} />
             <Route path='*' element={<NotFound darkMode={darkMode} />} />
-            <Route path='/signup' element={<SignUp/>} />
+            <Route path='/signup' element={<SignUp darkMode={darkMode}/>} />
           </Routes>
           <Toaster position='bottom-right' />
           <Footer />
