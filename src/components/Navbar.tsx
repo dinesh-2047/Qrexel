@@ -82,6 +82,7 @@ export default function Navbar({
               className='text-red-600 cursor-pointer transition-transform transform hover:scale-110'
             />
           </Link>
+          <Link to='/signup'>
           <button
             type='button'
             className='text-white bg-[#00d084] px-4 py-1 rounded'
@@ -89,6 +90,7 @@ export default function Navbar({
           >
             {isSignedIn ? 'Sign Out' : 'Sign In / Sign Up'}
           </button>
+          </Link>
         </div>
       </header>
 
@@ -141,6 +143,7 @@ export default function Navbar({
           <button type='button' className='text-white' onClick={toggleDarkMode}>
             <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
           </button>
+          <Link to='/signup'>
           <button
             type='button'
             className='text-white bg-[#00d084] px-4 py-1 rounded'
@@ -148,6 +151,7 @@ export default function Navbar({
           >
             {isSignedIn ? 'Sign Out' : 'Sign In / Sign Up'}
           </button>
+          </Link>
         </nav>
       )}
     </React.Fragment>
