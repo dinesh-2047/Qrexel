@@ -5,44 +5,43 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Scanner from './pages/Scanner';
 import Report from './pages/Report';
-import QrCodes from './components/ui/QrCodes ';
+import QrCodes from './components/ui/QrCodes .tsx';
 import Loader from './pages/Loader';
 import Footer from './components/Footer';
 import NotFound from './pages/NotFound';
 
-function App() {
-  const [darkMode, setDarkMode] = React.useState(false);
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+const App: React.FC = () => {
+  const [showImg, setShowImg] = useState<boolean>(true);
 
-  const [showimg, setShowimg] = useState(true);
   useEffect(() => {
-    setTimeout(() => {
-      setShowimg(false);
+    const timer = setTimeout(() => {
+      setShowImg(false);
     }, 3000);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <React.Fragment>
-      {showimg ? (
+      {showImg ? (
         <Loader />
       ) : (
         <BrowserRouter>
-          <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-          <Routes>
-            <Route path='/' element={<Home darkMode={darkMode} />} />
-            <Route path='/scanner' element={<Scanner />} />
-            <Route path='/report' element={<Report />} />
-            <Route path='/qrcode' element={<QrCodes />} />
-            <Route path='*' element={<NotFound darkMode={darkMode} />} />
-          </Routes>
-          <Toaster position='bottom-right' />
+          <Navbar />
+          <div className='min-h-screen'>
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/scanner' element={<Scanner />} />
+              <Route path='/report' element={<Report />} />
+              <Route path='/qrcode' element={<QrCodes />} />
+              <Route path='*' element={<NotFound />} />
+            </Routes>
+            <Toaster position='bottom-right' />
+          </div>
           <Footer />
         </BrowserRouter>
       )}
     </React.Fragment>
   );
-}
+};
 
 export default App;
