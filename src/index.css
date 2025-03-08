@@ -1,8 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   :root {
     --radius: 0.5rem
   }
+}
+
+.cursor-custom {
+  cursor: url('/cursours/icons8-select-cursor-30.png'), auto;
+}
+
+.cursor-pointer {
+  cursor: url('/cursours/icons8-hand-cursor-30.png'), auto;
 }
