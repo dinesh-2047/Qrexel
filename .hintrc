@@ -1,5 +1,7 @@
 {
-  "extends": ["development"],
+  "extends": [
+    "development"
+  ],
   "hints": {
     "apple-touch-icons": "off",
     "axe/name-role-value": [
@@ -8,6 +10,7 @@
         "link-name": "off",
         "button-name": "off"
       }
-    ]
+    ],
+    "axe/forms": "off"
   }
 }
