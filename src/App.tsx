@@ -9,6 +9,7 @@ import QrCodes from './components/ui/QrCodes .tsx';
 import Loader from './pages/Loader';
 import Footer from './components/Footer';
 import NotFound from './pages/NotFound';
+import SignUp from './pages/SignUp';
 
 const App: React.FC = () => {
   const [showImg, setShowImg] = useState<boolean>(true);
@@ -34,6 +35,7 @@ const App: React.FC = () => {
               <Route path='/report' element={<Report />} />
               <Route path='/qrcode' element={<QrCodes />} />
               <Route path='*' element={<NotFound />} />
+              <Route path='/signup' element={<SignUp />} />
             </Routes>
             <Toaster position='bottom-right' />
           </div>
