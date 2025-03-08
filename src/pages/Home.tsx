@@ -63,7 +63,7 @@ export default function Home({ darkMode }: { darkMode: boolean }) {
           darkMode ? 'bg-[#1a2b3a]' : 'bg-white'
         } overflow-auto pt-10 px-4`}
       >
-        <main className='flex-grow max-w-4xl mx-auto p-4'>
+        <main className='flex-grow max-w-4xl md:mx-auto md:p-4'>
           <h1
             className={`text-2xl font-semibold text-center mb-4 ${
               darkMode ? 'text-[#0099cc]' : 'text-[#006400]'
