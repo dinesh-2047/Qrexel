@@ -8,8 +8,16 @@ import {
   faDownload,
   faShareAlt,
 } from '@fortawesome/free-solid-svg-icons';
+import { ThemeContext, ThemeContextType } from '../contexts/Themeprovider';
 
-export default function Home({ darkMode }: { darkMode: boolean }) {
+export default function Home() {
+  const {
+    theme,
+  }: {
+    theme: string;
+    toggleTheme: () => void;
+  } = React.useContext<ThemeContextType>(ThemeContext);
+
   const { currentQR, setCurrentQR } = useStore();
   const qrRef = useRef<HTMLDivElement>(null);
   const qrCode = useRef<QRCodeStyling>();
@@ -57,23 +65,23 @@ export default function Home({ darkMode }: { darkMode: boolean }) {
   };
 
   return (
-    <div className={`${darkMode ? 'dark' : ''}`}>
+    <div className={`${theme === 'dark' ? 'dark' : ''}`}>
       <div
         className={`min-h-screen flex flex-col ${
-          darkMode ? 'bg-[#1a2b3a]' : 'bg-white'
+          theme === 'dark' ? 'bg-slate-900' : 'bg-white'
         } overflow-auto pt-10 px-4`}
       >
         <main className='flex-grow max-w-4xl mx-auto p-4'>
           <h1
             className={`text-2xl font-semibold text-center mb-4 ${
-              darkMode ? 'text-[#0099cc]' : 'text-[#006400]'
+              theme === 'dark' ? 'text-[#0099cc]' : 'text-[#006400]'
             }`}
           >
             Free QR Code Generator
           </h1>
           <p
             className={`text-center text-lg mb-6 ${
-              darkMode ? 'text-gray-300' : 'text-gray-600'
+              theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
             }`}
           >
             Create dynamic, trackable, and well-designed QR Codes—forever free
@@ -82,7 +90,9 @@ export default function Home({ darkMode }: { darkMode: boolean }) {
 
           <div
             className={`flex flex-col md:flex-row p-4 rounded-lg shadow-lg gap-4 ${
-              darkMode ? 'bg-[#1a2b3a]' : 'bg-[#f0f0f0]'
+              theme === 'dark'
+                ? 'bg-slate-900  border-2 border-gray-300 rounded-lg shadow-xs shadow-white'
+                : 'bg-[#f0f0f0]'
             }`}
           >
             <div className='flex-1'>
@@ -93,7 +103,7 @@ export default function Home({ darkMode }: { darkMode: boolean }) {
                     type='button'
                     onClick={() => setCurrentQR({ type: type.toLowerCase() })}
                     className={`py-2 border border-gray-300 rounded text-center ${
-                      darkMode ? 'bg-[#444f58]' : 'bg-white'
+                      theme === 'dark' ? 'bg-[#444f58]' : 'bg-white'
                     } hover:bg-[#00d084] hover:text-white`}
                   >
                     {type}
@@ -103,19 +113,19 @@ export default function Home({ darkMode }: { darkMode: boolean }) {
 
               <div
                 className={`p-4 rounded-lg border border-gray-300 ${
-                  darkMode ? 'bg-[#2e3b44]' : 'bg-white'
+                  theme === 'dark' ? 'bg-[#2e3b44]' : 'bg-white'
                 }`}
               >
                 <label
                   className={`block mb-2 ${
-                    darkMode ? 'text-gray-300' : 'text-gray-700'
+                    theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
                   }`}
                 >
                   Redirect to an existing web URL
                 </label>
                 <input
                   className={`w-full p-2 border border-gray-300 rounded mb-2 ${
-                    darkMode ? 'bg-[#3c4a55] text-white' : ''
+                    theme === 'dark' ? 'bg-[#3c4a55] text-white' : ''
                   }`}
                   placeholder='Enter URL'
                   type='text'
@@ -129,7 +139,7 @@ export default function Home({ darkMode }: { darkMode: boolean }) {
                 />
                 <p
                   className={`text-sm mb-4 ${
-                    darkMode ? 'text-gray-400' : 'text-gray-500'
+                    theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
                   }`}
                 >
                   Try something like https://example.com/
@@ -138,7 +148,7 @@ export default function Home({ darkMode }: { darkMode: boolean }) {
                   <input className='mr-2' id='gps-tracking' type='checkbox' />
                   <label
                     className={`text-gray-700 ${
-                      darkMode ? 'text-gray-300' : ''
+                      theme === 'dark' ? 'text-gray-300' : ''
                     }`}
                     htmlFor='gps-tracking'
                   >
@@ -155,7 +165,7 @@ export default function Home({ darkMode }: { darkMode: boolean }) {
             <div className='flex-1 flex flex-col items-center py-4'>
               <p
                 className={`text-center mb-3 ${
-                  darkMode ? 'text-gray-300' : 'text-gray-600'
+                  theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
                 }`}
               >
                 To enable tracking,{' '}
@@ -173,7 +183,7 @@ export default function Home({ darkMode }: { darkMode: boolean }) {
                 <div className='w-full max-w-xs'>
                   <label
                     className={`text-sm ${
-                      darkMode ? 'text-gray-300' : 'text-gray-700'
+                      theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
                     }`}
                   >
                     Text Color
@@ -188,7 +198,7 @@ export default function Home({ darkMode }: { darkMode: boolean }) {
                 <div className='w-full max-w-xs'>
                   <label
                     className={`text-sm ${
-                      darkMode ? 'text-gray-300' : 'text-gray-700'
+                      theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
                     }`}
                   >
                     Background Color

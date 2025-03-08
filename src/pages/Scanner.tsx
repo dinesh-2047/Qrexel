@@ -4,11 +4,20 @@ import { Upload, Download } from 'lucide-react';
 import toast from 'react-hot-toast';
 import QRCodeStyling from 'qr-code-styling';
 
+import { ThemeContext, ThemeContextType } from '../contexts/Themeprovider';
+
 //USED CLOUDINARY TO STORE THE IMAGE
 // FROM WHIICH THE URL IS FETCHED
 // URL IS CONVERTED TO QR USING QR CODE STYLING
 
 export default function Scanner() {
+  const {
+    theme,
+  }: {
+    theme: string;
+    toggleTheme: () => void;
+  } = React.useContext<ThemeContextType>(ThemeContext);
+
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [qrCode, setQrCode] = useState<QRCodeStyling | null>(null);
@@ -110,7 +119,13 @@ export default function Scanner() {
 
   return (
     <div className='max-w-2xl mx-auto h-full md:p-20'>
-      <div className='bg-white p-8 rounded-lg shadow-sm border '>
+      <div
+        className={`${
+          theme === 'dark'
+            ? 'bg-slate-900 text-white'
+            : 'bg-slate-50 text-slate-950'
+        } p-8 rounded-lg shadow-sm border`}
+      >
         <h1 className='text-2xl font-bold mb-6'>QR Code Scanner</h1>
 
         <div

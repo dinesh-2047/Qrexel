@@ -7,13 +7,17 @@ import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import webLogo from '../utils/favicon.svg';
 import { FiMenu, FiX } from 'react-icons/fi';
 
-export default function Navbar({
-  darkMode,
-  toggleDarkMode,
-}: {
-  darkMode: boolean;
-  toggleDarkMode: () => void;
-}) {
+import { ThemeContext, ThemeContextType } from '../contexts/Themeprovider';
+
+export default function Navbar() {
+  const {
+    theme,
+    toggleTheme,
+  }: {
+    theme: string;
+    toggleTheme: () => void;
+  } = React.useContext<ThemeContextType>(ThemeContext);
+
   const [isSignedIn, setIsSignedIn] = React.useState(false);
   const [isOpen, setIsOpen] = React.useState(false);
   const toggleSignIn = () => {
@@ -24,7 +28,9 @@ export default function Navbar({
     <React.Fragment>
       <header
         className={`flex items-center justify-between p-4 ${
-          darkMode ? 'bg-[#2d3a47]' : 'bg-[#ff5a92]'
+          theme === 'dark'
+            ? 'bg-[#2d3a47] text-white'
+            : 'bg-[#ff5a92] text-black'
         }`}
       >
         <div className='flex items-center space-x-2'>
@@ -70,8 +76,8 @@ export default function Navbar({
 
         {/* Actions */}
         <div className='hidden lg:flex items-center space-x-3'>
-          <button type='button' className='text-white' onClick={toggleDarkMode}>
-            <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
+          <button type='button' className='text-white' onClick={toggleTheme}>
+            <FontAwesomeIcon icon={theme === 'dark' ? faSun : faMoon} />
           </button>
           <Link to='/report' className='relative group flex items-center'>
             <span className='absolute bottom-[-30px] right-0 whitespace-nowrap rounded-md bg-red-600 px-2 py-1 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100'>
@@ -140,8 +146,8 @@ export default function Navbar({
             <Scan className='w-5 h-5' />
             <span>Scanner</span>
           </Link>
-          <button type='button' className='text-white' onClick={toggleDarkMode}>
-            <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
+          <button type='button' className='text-white' onClick={toggleTheme}>
+            <FontAwesomeIcon icon={theme === 'dark' ? faSun : faMoon} />
           </button>
           <Link to='/signup'>
           <button
